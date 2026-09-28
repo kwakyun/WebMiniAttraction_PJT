@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+<div th:fragment="content">
+  <h1>관광지수정 페이지</h1>
+  <form action="#" method="post" th:action="@{/travel/updateOK}">
+    <table id="customers">
+      <tr>
+        <td><label for="no">번호:</label></td>
+        <td>[[${param.no}]]
+          <input type="hidden" id="no" name="no" th:value="${param.no}">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="district">지역:</label></td>
+        <td>
+          <input type="text" id="district" name="district" th:value="${vo2.district}">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="title">제목:</label></td>
+        <td>
+          <input type="text" id="title" name="title" th:value="${vo2.title}">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="description">설명:</label></td>
+        <td>
+          <textarea id="description" name="description" cols="250" rows="10">[[${vo2.description}]]</textarea>
+        </td>
+      </tr>
+      <tr>
+      <tr>
+        <td><label for="address">주소:</label></td>
+        <td>
+          <input type="text" id="address" name="address" th:value="${vo2.address}">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="phone">전화번호:</label></td>
+        <td>
+          <input type="text" id="phone" name="phone" th:value="${vo2.phone}">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="전송">
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

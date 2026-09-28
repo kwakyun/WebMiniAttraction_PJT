@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<div hidden="" id="searchKey" th:text="${param.searchKey}"></div>
+<div hidden="" id="searchWord" th:text="${param.searchWord}"></div>
+<script>
+    $(document).ready(function () {
+        // Thymeleaf로부터 전달받은 값 추출
+        console.log('ready...');
+        const searchKey = document.getElementById('searchKey').innerText;
+        const searchWord = document.getElementById('searchWord').innerText;
+
+
+        console.log(searchKey);
+        console.log(searchWord);
+
+        // 검색 모드 여부 확인
+        const isSearchMode = searchKey.length && searchWord.length > 0;
+        console.log(isSearchMode);
+
+        // AJAX 요청 조건부 처리
+        if (!isSearchMode) {
+            $.ajax({
+                url: '/member/getTotalPages',
+                type: 'GET',
+                data: {limit: 5},
+                dataType: 'json',
+                success: function (response) {
+                    const totalPages = response.totalPages;
+                    const paginationElement = document.getElementById('pagination');
+                    generatePagination(paginationElement, totalPages);
+                },
+                error: function (xhr, status, error) {
+                    console.error("오류 발생: ", error);
+                }
+            });
+        } else {
+            const searchKey = document.getElementById('searchKey').innerText;
+            const searchWord = document.getElementById('searchWord').innerText;
+            console.log(searchKey);
+            console.log(searchWord);
+
+            $.ajax({
+                url: '/member/getSearchListPages', // searchList URL로 수정
+                type: 'GET',
+                data: {
+                    limit: 5,
+                    searchKey: searchKey,   // searchKey를 파라미터로 추가
+                    searchWord: searchWord  // searchWord를 파라미터로 추가
+                },
+                dataType: 'json',
+                success: function (response) {
+                    const pagination2Element = document.getElementById('pagination2');
+                    console.log(pagination2Element);
+                    if (pagination2Element) {
+                        const searchEndPage = response.searchEndPage;
+                        generateSearchPagination(pagination2Element, searchEndPage, searchKey, searchWord);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("오류 발생: ", error);
+                }
+            });
+        }
+
+
+        // 일반 페이지네이션 생성 함수
+        function generatePagination(element, totalPages) {
+            if (!element) {
+                console.error('pagination 요소가 존재하지 않습니다.');
+                return;
+            }
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = `/member/selectAll?cpage=${i}&limit=5`;
+                pageLink.innerText = i;
+                pageLink.style.marginRight = '10px';
+                element.appendChild(pageLink);
+            }
+        }
+
+        // 검색 페이지네이션 생성 함수
+        function generateSearchPagination(element, endPage, key, word) {
+            if (!element) {
+                console.error('pagination2 요소가 존재하지 않습니다.');
+                return;
+            }
+
+            for (let i = 1; i <= endPage; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = `/member/searchList?cpage=${i}&limit=5` +
+                    `&searchKey=${encodeURIComponent(key)}` +
+                    `&searchWord=${encodeURIComponent(word)}`;
+                pageLink.innerText = i;
+                pageLink.style.marginRight = '10px';
+                element.appendChild(pageLink);
+            }
+        }
+
+    });
+</script>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>회원목록</h1>
+        <form method="get" th:action="@{/member/searchList}">
+        <table id="search_form">
+            <tr>
+                <td><select name="searchKey">
+                    <option value="name">name</option>
+                    <option value="tel">tel</option>
+                </select></td>
+                <td><input type="text" name="searchWord" th:value="ki"></td>
+                <td><input type="submit" value="search"></td>
+            </tr>
+        </table>
+        </form>
+
+        <table id="customers">
+            <thead>
+                <tr>
+                    <th>num</th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>tel</th>
+                    <th>regdate</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="vo : ${vos}">
+                    <tr>
+                        <td><a th:href="@{/member/selectOne(num=${vo.num})}">[[${vo.num}]]</a></td>
+                        <td><a th:href="@{/member/selectOne(num=${vo.num})}">[[${vo.id}]]</a></td>
+                        <td>[[${vo.name}]]</td>
+                        <td>[[${vo.tel}]]</td>
+                        <td>[[${vo.regdate}]]</td>
+
+                    </tr>
+                </th:block>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="7" id="pagination" th:if="${param.searchKey == null}"></td>
+                <td colspan="7" id="pagination2" th:if="${param.searchKey != null}"></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

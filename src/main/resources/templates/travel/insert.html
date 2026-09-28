@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+<div th:fragment="content">
+  <h1>관광지 추가 페이지</h1>
+  <form action="#" method="post" th:action="@{/travel/insertOK}" enctype="multipart/form-data">
+    <table id="customers">
+      <tr>
+        <td><label for="district">구역:</label></td>
+        <td>
+          <input type="text" id="district" name="district" value="제주 제주시장">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="title">제목:</label></td>
+        <td>
+          <input type="text" id="title" name="title" value="동문재래시장">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="description">설명:</label></td>
+        <td>
+          <input type="text" id="description" name="description" value="전국 해외 곳곳에서 놀러오는 시장">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="address">주소:</label></td>
+        <td>
+          <input type="text" id="address" name="address" value="제주 제주시 관덕로14길 20">
+        </td>
+      </tr>
+      <tr>
+        <td><label for="phone">전화번호:</label></td>
+        <td>
+          <input type="text" id="phone" name="phone" value = "064-752-3001">
+        </td>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="전송">
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

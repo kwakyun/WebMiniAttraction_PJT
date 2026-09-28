@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.Travel.travel.TravelMapper">
+
+    <select id="selectAll" resultType="org.example.Travel.travel.TravelVO">
+        select * from travel
+        order by no asc limit #{startRow},#{limit}
+    </select>
+
+    <select id="searchListDistrict" resultType="org.example.Travel.travel.TravelVO">
+        select * from travel
+        where district like #{searchWord}
+        order by no asc limit #{startRow},#{limit}
+    </select>
+
+    <select id="searchListAddress" resultType="org.example.Travel.travel.TravelVO">
+        select * from travel
+        where address like #{searchWord}
+        order by no asc limit #{startRow},#{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.example.Travel.travel.TravelVO">
+        select * from travel
+        where no = #{no}
+    </select>
+
+    <insert id="insertOK">
+        insert into travel(district,title,description,address,phone)
+        values(#{district},#{title},#{description},#{address},#{phone})
+    </insert>
+
+    <update id="updateOK">
+        update travel set district=#{district},title=#{title},description=#{description},
+        address=#{address},phone=#{phone}
+        where no=#{no}
+    </update>
+
+    <delete id="deleteOK">
+        delete from travel
+        where no=#{no}
+    </delete>
+
+    <select id="getTotalRecords">
+        select count(*) from travel;
+    </select>
+
+    <select id="getSearchDistrictRecords">
+        select count(*) from travel
+        where district like #{searchWord}
+    </select>
+
+    <select id="getSearchAddressRecords">
+        select count(*) from travel
+        where address like #{searchWord}
+    </select>
+
+
+</mapper>

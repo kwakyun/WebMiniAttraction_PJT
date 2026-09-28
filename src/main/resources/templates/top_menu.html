@@ -1,0 +1,68 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<nav th:fragment="top_menu">-->
+<!--    <a th:href="@{/}">HOME</a>-->
+
+<!--    <th:block sec:authorize="isAnonymous()">-->
+<!--        <a th:href="@{/member/insert}">회원가입</a>-->
+<!--        <a th:href="@{/member/login_form}">로그인</a>-->
+<!--    </th:block>-->
+
+
+<!--    <th:block sec:authorize="isAuthenticated()">-->
+<!--        <a th:href="@{/member/logout}">로그아웃</a>-->
+<!--        <a th:href="@{/member/selectOneMyPage}">마이페이지</a>-->
+<!--        <a th:href="@{/travel/selectAll(cpage=1,limit=5)}">관광지목록</a>-->
+<!--        <a th:href="@{/travel/insert}">관광지추가</a>-->
+<!--    </th:block>-->
+
+<!--    <th:block sec:authorize="hasRole('ADMIN')">-->
+<!--        <a th:href="@{/member/selectAll(cpage=1,limit=5)}">회원목록</a>-->
+<!--    </th:block>-->
+<!--    <hr>-->
+<!--</nav>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<nav th:fragment="top_menu" class="bg-blue shadow-md py-4">
+    <div class="container mx-auto">
+        <div class="text-center">
+            <div class="grid grid-cols-6 gap-6 text-2xl font-semibold"> <!-- text-lg에서 text-2xl로 변경 -->
+                <a th:href="@{/}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">
+                    🏡HOME
+                </a>
+
+                <th:block sec:authorize="isAnonymous()">
+                    <a th:href="@{/member/insert}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">회원가입</a>
+                    <a th:href="@{/member/login_form}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">로그인</a>
+                </th:block>
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <a th:href="@{/member/logout}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">로그아웃</a>
+                    <a th:href="@{/member/selectOneMyPage}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">마이페이지</a>
+                    <a th:href="@{/travel/selectAll(cpage=1,limit=5)}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">관광지목록</a>
+                    <a th:href="@{/travel/insert}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">관광지추가</a>
+                </th:block>
+
+                <th:block sec:authorize="hasRole('ADMIN')">
+                    <a th:href="@{/member/selectAll(cpage=1,limit=5)}" class="text-gray-800 hover:text-blue-600" style="font-size: 1.5rem;">회원목록</a>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
+
+
+
+
+
+

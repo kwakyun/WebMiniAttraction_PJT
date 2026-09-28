@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>회원수정 페이지</h1>
+        <form action="#" method="post" th:action="@{/member/updateOK}" enctype="multipart/form-data">
+            <table id="customers">
+                <tr>
+                    <td><label for="num">번호:</label></td>
+                    <td>[[${param.num}]]
+                        <input type="hidden" id="num" name="num" th:value="${param.num}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="id">아이디:</label></td>
+                    <td>[[${vo2.id}]]
+                        <input type="hidden" id="id" name="id" th:value="${vo2.id}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="pw">비번:</label></td>
+                    <td>
+                        <input type="password" id="pw" name="pw" autocomplete="new-password" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="name">이름:</label></td>
+                    <td>
+                        <input type="text" id="name" name="name" th:value="${vo2.name}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tel">연락처:</label></td>
+                    <td>
+                        <input type="text" id="tel" name="tel" th:value="${vo2.tel}">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="전송">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

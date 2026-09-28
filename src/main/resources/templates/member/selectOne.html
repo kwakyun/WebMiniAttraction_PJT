@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body th:replace="~{layout::layout}">
+    <div th:fragment="content">
+        <h1>회원 상세 페이지</h1>
+        <table id="customers">
+            <thead>
+            <tr>
+                <th>num</th>
+                <th>id</th>
+                <th>name</th>
+                <th>tel</th>
+                <th>regdate</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[${vo2.num}]]</td>
+                    <td>[[${vo2.id}]]</td>
+                    <td>[[${vo2.name}]]</td>
+                    <td>[[${vo2.tel}]]</td>
+                    <td>[[${vo2.regdate}]]</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <a th:href="@{/member/update(num=${vo2.num})}">회원수정</a>
+                        <a th:href="@{/member/delete(num=${vo2.num})}">회원삭제</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</body>
+</html>

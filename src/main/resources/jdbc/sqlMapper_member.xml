@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.Travel.member.MemberMapper">
+
+    <select id="selectAll" resultType="org.example.Travel.member.MemberVO">
+        select * from member_sec
+        order by num desc limit #{startRow},#{limit}
+    </select>
+
+    <select id="searchListName" resultType="org.example.Travel.member.MemberVO">
+        select * from member_sec
+        where name like #{searchWord}
+        order by num desc limit #{startRow},#{limit}
+    </select>
+
+    <select id="searchListTel" resultType="org.example.Travel.member.MemberVO">
+        select * from member_sec
+        where tel like #{searchWord}
+        order by num desc limit #{startRow},#{limit}
+    </select>
+
+    <select id="selectOne" resultType="org.example.Travel.member.MemberVO">
+        select * from member_sec
+        where num = #{num}
+    </select>
+
+
+    <insert id="insertOK">
+        insert into member_sec(id,pw,name,tel,user_role)
+        values(#{id},#{pw},#{name},#{tel},#{user_role})
+    </insert>
+
+    <update id="updateOK">
+        update member_sec set id=#{id},pw=#{pw},name=#{name},tel=#{tel}
+        where num=#{num}
+    </update>
+
+    <delete id="deleteOK">
+        delete from member_sec
+        where num=#{num}
+    </delete>
+
+    <select id="findById" resultType="org.example.Travel.member.MemberVO">
+        select * from member_sec
+        where id = #{username}
+    </select>
+
+    <select id="getTotalRecords_m">
+        select count(*) from member_sec
+    </select>
+
+    <select id="getSearchNameRecords">
+        select count(*) from member_sec
+        where name like #{searchWord}
+    </select>
+
+    <select id="getSearchTelRecords">
+        select count(*) from member_sec
+        where tel like #{searchWord}
+    </select>
+</mapper>

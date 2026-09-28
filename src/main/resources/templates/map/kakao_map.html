@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>카카오 지도</title></head>
+<body>
+<p th:if="${#strings.isEmpty(kakaoMapJavascriptKey)}">지도 키가 설정되지 않았습니다.</p>
+<th:block th:unless="${#strings.isEmpty(kakaoMapJavascriptKey)}">
+  <div id="map" style="width:750px;height:350px;"></div>
+  <script th:src="@{https://dapi.kakao.com/v2/maps/sdk.js(appkey=${kakaoMapJavascriptKey})}"></script>
+  <script>
+    if (typeof kakao !== 'undefined' && kakao.maps) {
+      new kakao.maps.Map(document.getElementById('map'), {
+        center: new kakao.maps.LatLng(37.56613, 126.98115),
+        level: 1,
+        mapTypeId: kakao.maps.MapTypeId.ROADMAP
+      });
+    }
+  </script>
+</th:block>
+</body>
+</html>

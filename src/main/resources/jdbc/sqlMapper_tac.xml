@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.Travel.tac.TacMapper">
+
+    <select id="searchList" resultType="org.example.Travel.tac.TacVO">
+        SELECT *
+        FROM travel_attraction_code
+        WHERE areaNm LIKE CONCAT('%', #{searchWord1}, '%')
+        AND sigunguNm LIKE CONCAT('%', #{searchWord2}, '%')
+        ORDER BY areaCd ASC
+    </select>
+
+
+    <!--    #SELECT *-->
+<!--    FROM travel_attraction_code-->
+<!--    WHERE areaNm LIKE '%서울특별시%'-->
+<!--    AND sigunguNm LIKE '%종로구%'-->
+<!--    ORDER BY areaCd ASC;-->
+
+
+
+
+
+</mapper>

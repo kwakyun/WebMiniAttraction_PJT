@@ -1,0 +1,168 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>여행지 찾기</title>-->
+<!--  <link rel="stylesheet" th:href="@{/css/main.css}">-->
+<!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+<!--  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>-->
+<!--  <style>-->
+<!--    .hero {-->
+<!--      background-size: cover;-->
+<!--      height: 300px;-->
+<!--      display: flex;-->
+<!--      justify-content: center;-->
+<!--      align-items: center;-->
+<!--      color: white;-->
+<!--      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);-->
+<!--    }-->
+<!--    .search-box {-->
+<!--      max-width: 600px;-->
+<!--      margin: auto;-->
+<!--    }-->
+<!--  </style>-->
+<!--</head>-->
+<!--<body th:replace="~{layout::layout}">-->
+
+<!--<div th:fragment="content">-->
+<!--  <div class="hero">-->
+<!--    <h1 class="text-center">환영합니다!</h1>-->
+<!--    <th:block sec:authorize="isAuthenticated()">-->
+<!--    </th:block>-->
+<!--    <h1 class="text-center">여행지를 찾아보세요</h1>-->
+<!--  </div>-->
+<!--  <div class="container mt-5">-->
+<!--    <h2 class="text-center mb-4">🔥 인기 여행지 🔥</h2>-->
+<!--    <div class="row">-->
+<!--      &lt;!&ndash; 카드 1 &ndash;&gt;-->
+<!--      <div class="col-md-4">-->
+<!--        <div class="card">-->
+<!--          <img src="/images/travel1.jpg" class="card-img-top" alt="여행지1">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">제주도</h5>-->
+<!--            <p class="card-text">아름다운 해변과 자연이 가득한 국내 최고의 여행지!</p>-->
+<!--            <a href="http://localhost:8080/travel/searchList?searchKey=address&searchWord=%EC%A0%9C%EC%A3%BC" class="btn btn-primary">자세히 보기</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; 카드 2 &ndash;&gt;-->
+<!--      <div class="col-md-4">-->
+<!--        <div class="card">-->
+<!--          <img src="/images/travel2.jpg" class="card-img-top" alt="여행지2">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">서울</h5>-->
+<!--            <p class="card-text">전통과 현대가 공존하는 대한민국의 수도!</p>-->
+<!--            <a href="#" class="btn btn-primary">자세히 보기</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      &lt;!&ndash; 카드 3 &ndash;&gt;-->
+<!--      <div class="col-md-4">-->
+<!--        <div class="card">-->
+<!--          <img src="/images/travel3.jpg" class="card-img-top" alt="여행지3">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">부산</h5>-->
+<!--            <p class="card-text">광안리와 해운대를 즐길 수 있는 바다 도시!</p>-->
+<!--            <a href="#" class="btn btn-primary">자세히 보기</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>여행지 찾기</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <style>
+    .hero {
+      background-image: url('/images/home.jpg'); /* 배경 이미지 URL로 변경 */
+      background-size: cover;
+      background-position: center;
+      height: 500px; /* 배경 크기를 더 크게 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+    .hero h1 {
+      font-size: 3rem; /* 타이틀 글자 크기 증가 */
+      font-weight: bold;
+    }
+    .search-box {
+      max-width: 600px;
+      margin: auto;
+    }
+    .card img {
+      height: 200px; /* 카드 이미지 크기 고정 */
+      object-fit: cover; /* 이미지 비율 유지하면서 크기 맞추기 */
+    }
+  </style>
+</head>
+<body th:replace="~{layout::layout}">
+
+<div th:fragment="content">
+  <div class="hero">
+    <h1 class="text-center">환영합니다!</h1>
+    <th:block sec:authorize="isAuthenticated()">
+    </th:block>
+    <h1 class="text-center">여행지를 찾아보세요</h1>
+  </div>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">🔥 인기 여행지 🔥</h2>
+    <div class="row">
+      <!-- 카드 1 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="/images/jeju.jpg" class="card-img-top" alt="제주도"> <!-- 제주도 이미지로 대체 -->
+          <div class="card-body">
+            <h5 class="card-title">제주도</h5>
+            <p class="card-text">🏖️아름다운 해변과 자연이 가득한 <br> 국내 최고의 여행지!🌴</p>
+            <a href="http://localhost:8080/travel/searchList?searchKey=address&searchWord=%EC%A0%9C%EC%A3%BC" class="btn btn-primary">자세히 보기</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 카드 2 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="/images/kangwon.jpg" class="card-img-top" alt="강원도"> <!-- 강원도 이미지로 대체 -->
+          <div class="card-body">
+            <h5 class="card-title">강원도</h5>
+            <p class="card-text">🌲 웅장한 자연과 🏞️푸른 바다가 어우러진 힐링 여행지! 🌅</p>
+            <a href="http://localhost:8080/travel/searchList?searchKey=address&searchWord=%EA%B0%95%EC%9B%90%EB%8F%84" class="btn btn-primary">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 3 -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="/images/busan.jpg" class="card-img-top" alt="부산"> <!-- 부산 이미지로 대체 -->
+          <div class="card-body">
+            <h5 class="card-title">부산</h5>
+            <p class="card-text">🔥 푸른 바다와 화려한 야경이 만나는 곳, 해운대에서 제대로 놀아보자! 🌊🏖️✨</p>
+            <a href="http://localhost:8080/travel/searchList?searchKey=address&searchWord=%EB%B6%80%EC%82%B0" class="btn btn-primary">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
